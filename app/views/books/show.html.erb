@@ -1,4 +1,4 @@
-<h1>6</h1>
+<h1>books show</h1>
 
 <h2>User info</h2>
 <%= image_tag 'default-image.jpg' %>
@@ -15,10 +15,13 @@
     </tr>
   </tbody>
 </table>
+<span>
+  <%= link_to 'Edit', edit_user_path(@book.user) %>
+</span>
 
 
 <h2>New book</h2>
-  <%= form_with model: @book do |f| %>
+  <%= form_with model: @books do |f| %>
     <h4>Title</h4>
       <%= f.text_field :title %>
     <h4>Opinion</h4>
@@ -27,12 +30,18 @@
   <% end %>
 
 <h2>Book detail</h2>
-<div>
-  <%= image_tag book.get_image %>
-  <p><%= image_tag 'default-image.jpg' %></p>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
-</div>
+<table class="table">
+  <tbody>
+    <tr>
+      <td><%= image_tag 'default-image.jpg' %>username</td>
+      <td><%= @book.title %></td>
+      <td><%= @book.body %></td>
+      <% if @book.user == current_user %>
+        <%= link_to "Destroy", book_path(@book), method: :delete %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+  <%#= image_tag @book.user.get_profile_image(100, 100) %>
+  <p><%#= @book.user.name %></p>
