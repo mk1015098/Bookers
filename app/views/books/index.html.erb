@@ -1,5 +1,14 @@
 <h1>books index</h1>
 
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error occurred.
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>User info</h2>
 <%= image_tag 'default-image.jpg' %>
 <table class="table">
@@ -16,7 +25,7 @@
   </tbody>
 </table>
 <span>
-  <%#= link_to 'Edit', edit_user_path(@book.user) %>
+  <%= link_to 'Edit', edit_user_path(current_user) %>
 </span>
 
 <h2>New book</h2>
