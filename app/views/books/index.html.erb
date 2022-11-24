@@ -1,41 +1,6 @@
-<h1>books index</h1>
 
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>error occurred.
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render'userinfo', book: @book %>
 
-<h2>User info</h2>
-<%= image_tag 'default-image.jpg' %>
-<table class="table">
-  <tbody>
-    <tr></tr>
-    <tr>
-      <th>name</th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>introductoin</th>
-      <th></th>
-    </tr>
-  </tbody>
-</table>
-<span>
-  <%= link_to 'Edit', edit_user_path(current_user) %>
-</span>
-
-<h2>New book</h2>
-  <%= form_with model: @book do |f| %>
-    <h4>Title</h4>
-      <%= f.text_field :title %>
-    <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-  <% end %>
 
 <h2>Books</h2>
 <table class="table table-hover table-invers">
@@ -50,8 +15,8 @@
   <tbody>
     <% @books.each do |book| %>
     <tr>
-      <td><%= image_tag 'default-image.jpg' %></td>
-      <td><%= book.title %></td>
+      <td><%#= link_to image_tag 'default-image.jpg', user_path(user.id) %></td>
+      <td><%= link_to book.title, book_path(book.id) %></td>
       <td><%= book.body %></td>
     </tr>
     <% end %>
