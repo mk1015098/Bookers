@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    #@books = @user.books
+    @books = @user.books
   end
 
   def index
+    @user = current_user
     @users = User.all
     @book = Book.new
   end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user_id = current_user
     if @user.update(user_params)
       flash[:notice] = "You have updated book successfully."
       redirect_to user_path(current_user)
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to post_images_path
+      redirect_to user_path(current_user)
     end
   end
 end
